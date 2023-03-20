@@ -1,0 +1,17 @@
+.tbody {
+}
+
+.tableTr {
+  border: 1px solid #ddd;
+  padding: 15px;
+}
+
+.tableTr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tableTd {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}

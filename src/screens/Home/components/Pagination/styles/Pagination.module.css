@@ -1,0 +1,19 @@
+.pagination {
+}
+
+.paginationButton {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 0.2em;
+  margin: 0.2em;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.paginationButton:hover {
+  background-color: #ddd;
+}
+
+.paginationButton:disabled {
+  background-color: #ddd;
+}

@@ -5,13 +5,64 @@
 }
 
 .tableContainer {
+  max-height: 26em;
+  overflow-y: auto;
 }
 
 .table {
   border-collapse: collapse;
 }
 
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 14em;
+  font-size: 2rem;
+}
+
 .tableTh {
   border: 1px solid #000;
   padding: 10px;
+}
+
+.orderIcon {
+  margin-left: 0.4em;
+  cursor: pointer;
+  width: 0.8em;
+  height: 0.8em;
+}
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.searchInput {
+  width: 30em;
+  outline: none;
+  font-size: 1em;
+  padding: 0.5em;
+  border: 1px solid #000;
+  border-radius: 1em;
+  margin-right: 1em;
+}
+
+.disableCheckbox {
+  cursor: pointer;
+  transform: scale(1.5);
+  animation: bounce 1s infinite;
+}
+
+.chevron {
+  cursor: pointer;
+  margin-left: 0.3em;
 }

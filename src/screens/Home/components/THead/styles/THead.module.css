@@ -1,0 +1,10 @@
+.thead {
+}
+.tableTh {
+  border: 1px solid #000;
+  padding: 10px;
+}
+.chevron {
+  cursor: pointer;
+  margin-left: 0.3em;
+}

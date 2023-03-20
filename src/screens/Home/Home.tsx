@@ -1,54 +1,131 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles/Home.module.css";
 import tableHeadersItems from "@/constants/tableHeadersItems";
 import { NextPageContext } from "next";
 import { getCommerces } from "@/services/commerce";
 import { CommmerceService } from "@/models/commerce";
+import { TBody } from "./components/TBody";
+import { Pagination } from "./components/Pagination";
+import { Select } from "./components/Select";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { THead } from "./components/THead";
 export interface HomeProps {
   commerce: CommmerceService;
 }
 
 const Home: React.FC<HomeProps> = ({ commerce }) => {
   const [commerces, setCommerces] = useState(commerce);
-  const [search, setSearch] = useState("");
-  const [sort, setSort] = useState({
-    sortField: "id",
-    sortDirection: "asc",
+  const [loading, setLoading] = useState(false);
+  const [filters, setFilters] = useState({
+    search: "",
+    status: false,
+    page: 1,
+    rowsPerPage: 10,
+  } as {
+    search: string;
+    status: boolean;
+    page: number;
+    rowsPerPage: any;
   });
+
+  const [sort, setSort] = useState({
+    sortField: "cuit",
+    sortDirection: -1,
+  } as {
+    sortField: string;
+    sortDirection: 1 | -1;
+  });
+
+  useEffect(() => {
+    const getCommercesData = async () => {
+      setLoading(true);
+      const data = await getCommerces({
+        limit: filters.rowsPerPage,
+        page: filters.page,
+        search: filters.search,
+        status: filters.status,
+        sortField: sort.sortField as "commerce" | "cuit",
+        sortDirection: sort.sortDirection,
+      });
+      setCommerces(data);
+      setLoading(false);
+    };
+
+    getCommercesData();
+  }, [filters, sort]);
 
   return (
     <div className={styles.home}>
-      <div className={styles.searchContainer}></div>
-      <div className={styles.tableContainer}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              {tableHeadersItems.map((item, index) => (
-                <th className={styles.tableTh} key={index}>
-                  {item}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {commerces.data.map((item, index) => (
-              <tr key={index}>
-                <td className={styles.tableTd}>{item.id}</td>
-                <td className={styles.tableTd}>{item.commerce}</td>
-                <td className={styles.tableTd}>{item.cuit}</td>
-                <td className={styles.tableTd}>{item.concept1}</td>
-                <td className={styles.tableTd}>{item.concept2}</td>
-                <td className={styles.tableTd}>{item.concept3}</td>
-                <td className={styles.tableTd}>{item.concept4}</td>
-                <td className={styles.tableTd}>{item.actualBalance}</td>
-                <td className={styles.tableTd}>
-                  {item.status ? "Activo" : "Inactivo"}
-                </td>
-                <td className={styles.tableTd}>{String(item.lastSale)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Buscar"
+          value={filters.search}
+          onChange={(e) => {
+            setFilters({
+              ...filters,
+              search: e.target.value,
+            });
+          }}
+          className={styles.searchInput}
+        />
+        <div className={styles.searchIcon}>
+          <label htmlFor="Deshabilitados">Deshabilitados</label>
+          <input
+            type="checkbox"
+            checked={filters.status}
+            onChange={(e) => {
+              setFilters({
+                ...filters,
+                status: e.target.checked,
+              });
+            }}
+            className={styles.disableCheckbox}
+          />
+        </div>
+      </div>
+      {loading ? (
+        <div className={styles.loadingContainer}>
+          <p className={styles.loading}> Cargando ...</p>
+        </div>
+      ) : (
+        <div className={styles.tableContainer}>
+          <table className={styles.table}>
+            <THead
+              tableHeadersItems={tableHeadersItems}
+              onClickSort={(sortFieldParam, sortDirectionParam) => {
+                setSort({
+                  sortField: sortFieldParam,
+                  sortDirection: sortDirectionParam,
+                });
+              }}
+              sort={sort}
+            />
+            <TBody items={commerces.data} />
+          </table>
+        </div>
+      )}
+      <div className={styles.paginationContainer}>
+        <Select
+          onLimitChange={(limit) => {
+            setFilters({
+              ...filters,
+              rowsPerPage: Number(limit),
+            });
+          }}
+          limit={filters.rowsPerPage}
+          option={[10, 20, 30, 40, 50]}
+        />
+        <Pagination
+          actualPage={filters.page}
+          totalPages={commerces.pages}
+          onPageChange={(page) => {
+            setFilters({
+              ...filters,
+              page,
+            });
+          }}
+        />
       </div>
     </div>
   );
