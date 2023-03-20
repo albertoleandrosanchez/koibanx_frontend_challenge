@@ -1,14 +1,7 @@
 import React from "react";
 import styles from "./styles/THead.module.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-export interface THeadProps {
-  tableHeadersItems: any[];
-  onClickSort: (sortField: string, sortDirection: 1 | -1) => void;
-  sort: {
-    sortField: string;
-    sortDirection: 1 | -1;
-  };
-}
+import { THeadProps } from "@/models/thead";
 
 const THead: React.FC<THeadProps> = ({
   tableHeadersItems,

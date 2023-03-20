@@ -1,10 +1,6 @@
 import React from "react";
 import styles from "./styles/Select.module.css";
-export interface SelectProps {
-  onLimitChange: (limit: string) => void;
-  limit: number | string;
-  option: number[] | string[];
-}
+import { SelectProps } from "@/models/select";
 
 const Select: React.FC<SelectProps> = ({ onLimitChange, limit, option }) => {
   return (

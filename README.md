@@ -1,38 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Koibanx Frontend Challenge
 
-## Getting Started
+## Como Correrlo?
 
-First, run the development server:
+Dentro de la carpeta raiz debe crearse un archivo .env con esto dentro
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+NEXT_PUBLIC_API_URL= https://api.koibanx.com/stores
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+esto mismo podria haber sido colocado en un archivo de configuracion pero opte por consumir de un .env
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Vamos a la terminal, nos colocamos sobre la carpeta del proyecto y corremos la siguiente linea
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```bash
+npm i
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Una vez terminado de instalar los paquetes correspondientes de este repositorio lo corremos con
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+npm start
+```
 
-## Learn More
+Aclaracion:
+Para este proyecto se usó NextJs por lo que si se dejaba por defecto al correr la linea "npm start" correria el build, que todavia no se ha hecho, se ha modificado el script del package.json
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+previamente era
+"start": "next start"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+por
+"start": "next dev",
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+una vez hecho esto esta listo para poder ingresar al proyecto en la url http://localhost:3000/
 
-## Deploy on Vercel
+## Que librerias se han usado?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- NextJs
+- Typescript
+- React-icons
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Aclaracion en la estructura
+
+La carpeta "pages" es usada solamente como routing y la carpeta "screen" es donde se encuentra las paginas.

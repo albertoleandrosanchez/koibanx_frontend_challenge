@@ -1,11 +1,6 @@
 import React from "react";
 import styles from "./styles/Pagination.module.css";
-export interface PaginationProps {
-  onPageChange: (page: number) => void;
-  actualPage: number;
-  totalPages: number;
-  neighborNumbers?: number;
-}
+import { PaginationProps } from "@/models/pagination";
 
 const Pagination: React.FC<PaginationProps> = ({
   neighborNumbers = 2,
