@@ -4,11 +4,10 @@ import tableHeadersItems from "@/constants/tableHeadersItems";
 import { NextPageContext } from "next";
 import { getCommerces } from "@/services/commerce";
 import { CommmerceService } from "@/models/commerce";
-import { TBody } from "./components/TBody";
-import { Pagination } from "./components/Pagination";
-import { Select } from "./components/Select";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { THead } from "./components/THead";
+import { TBody } from "@/components/TBody";
+import { Pagination } from "@/components/Pagination";
+import { Select } from "@/components/Select";
+import { THead } from "@/components/THead";
 export interface HomeProps {
   commerce: CommmerceService;
 }

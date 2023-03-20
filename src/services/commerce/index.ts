@@ -14,7 +14,7 @@ export const getCommerces = async ({
   search,
   status,
   sortField = "commerce",
-  sortDirection,
+  sortDirection = 1,
   page = 1,
   limit = 10,
 }: getCommercesProps): Promise<CommmerceService> => {
